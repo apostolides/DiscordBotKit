@@ -1,5 +1,6 @@
 const ytdl = require('ytdl-core');
 const helpMessage = require('./guildHelpMessage.js');
+const {simpleYoutubePlayer} = require("./youtube/simpleYoutubePlayer.js")
 
 module.exports = {
   botGreet:(messageObject)=>{
@@ -44,10 +45,8 @@ module.exports = {
     else{
       voiceChannel.join().then(async (connection)=>{
         try{
-          let songInfo = await ytdl.getInfo(query);
-          let song = {title: songInfo.title,url: songInfo.video_url};
-          messageObject.channel.send(`Playing: ${song.title}`);
-          connection.play(ytdl(song.url));    
+          await connection.play(ytdl(query));
+          messageObject.channel.send(`Playing: ${query}`);
         }
         catch(err){
           console.error(err);
@@ -98,5 +97,6 @@ module.exports = {
     else{
       messageObject.channel.send(`This member (${messageObject.member}) can't execute: ${role} commands.`);
     }
-  }
+  },
+  simpleYoutubePlayer:simpleYoutubePlayer
 }

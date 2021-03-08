@@ -1,7 +1,7 @@
 const commands = require('./guildCommands.js');
 
 module.exports = {
-  handleMessage:(messageObject,message,botPrefix,botName)=>{
+  handleMessage:(clientObject,messageObject,message,botPrefix,botName)=>{
       switch(message[1]){
         case "greet":
           commands.botGreet(messageObject);
@@ -27,10 +27,12 @@ module.exports = {
         case "protected_command":
           commands.botProtectedCommand(messageObject);
           break;
-        /*case "youtube": // Removed until ytdl conflict gets resolved.
+        case "youtube":
           commands.botYoutube(messageObject,message);
           break;
-        */
+        case "youtube_search":
+          commands.simpleYoutubePlayer(messageObject,message);
+          break;
         default:
           commands.botInvalidCommand(messageObject,botPrefix,botName);
     }
