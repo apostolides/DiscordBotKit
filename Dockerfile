@@ -5,4 +5,4 @@ RUN apt-get update \
 WORKDIR /app
 COPY . /app
 RUN npm install
-CMD ["nodejs","index.js"]
+CMD ["nodejs","src/index.js"]
