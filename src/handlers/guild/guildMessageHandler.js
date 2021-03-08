@@ -33,6 +33,12 @@ module.exports = {
         case "youtube_search":
           commands.simpleYoutubePlayer(messageObject,message);
           break;
+        case "give_role":
+          commands.roleGiver(clientObject,messageObject,message);
+          break;
+        case "remove_role":
+          commands.roleRemover(clientObject,messageObject,message);
+          break;
         default:
           commands.botInvalidCommand(messageObject,botPrefix,botName);
     }

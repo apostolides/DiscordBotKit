@@ -1,6 +1,8 @@
 const ytdl = require('ytdl-core');
 const helpMessage = require('./guildHelpMessage.js');
 const {simpleYoutubePlayer} = require("./youtube/simpleYoutubePlayer.js")
+const {roleGiver} = require("./roles/roleGiver.js");
+const {roleRemover} = require("./roles/roleRemover.js");
 
 module.exports = {
   botGreet:(messageObject)=>{
@@ -32,7 +34,7 @@ module.exports = {
     }
   },
   botYoutube:(messageObject,message)=>{
-    let query = message.slice(2).join(" ")
+    let query = message.slice(2).join(" ");
     let voiceChannel = messageObject.member.voice.channel;
     if(!voiceChannel){
       messageObject.channel.send("Please join a voice channel first!");
@@ -98,5 +100,7 @@ module.exports = {
       messageObject.channel.send(`This member (${messageObject.member}) can't execute: ${role} commands.`);
     }
   },
-  simpleYoutubePlayer:simpleYoutubePlayer
+  simpleYoutubePlayer:simpleYoutubePlayer,
+  roleGiver:roleGiver,
+  roleRemover:roleRemover
 }
